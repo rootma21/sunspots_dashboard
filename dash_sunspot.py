@@ -33,6 +33,9 @@ def rolling(df):
 def main():
     # create app
     app = Dash(__name__)
+    
+    # server
+    server = app.server
 
     # read data
     col_names = ['Year', 'Month', 'FracDate',
