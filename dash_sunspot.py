@@ -7,6 +7,12 @@ from copy import deepcopy
 # https address of realtime sun img
 SUN_IMG_PATH = 'https://soho.nascom.nasa.gov/data/realtime/hmi_igr/1024/latest.jpg'
 
+# create app
+app = Dash(__name__)
+
+# server
+server = app.server
+
 
 def load_ss_data(fname, **kwargs):
     """ loads sunspot csv data into df """
@@ -31,11 +37,6 @@ def rolling(df):
 
 
 def main():
-    # create app
-    app = Dash(__name__)
-    
-    # server
-    server = app.server
 
     # read data
     col_names = ['Year', 'Month', 'FracDate',
@@ -123,8 +124,9 @@ def main():
         ss_var_fig = px.scatter(df_mm, x='cycle_mod', y='MM Sunspot Number')
         return ss_var_fig
 
-    app.run_server(debug=False)
+    
 
 
 if __name__ == '__main__':
     main()
+    app.run_server(debug=False)
